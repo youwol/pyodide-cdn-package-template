@@ -4,16 +4,16 @@ import { BehaviorSubject, forkJoin } from 'rxjs'
 import { filter, mergeMap, take } from 'rxjs/operators'
 import { InstallDoneEvent, CdnEvent, CdnMessageEvent } from '@youwol/cdn-client'
 /*
+This demonstrates how to 'install' the library:
 return async ({debug}) => {
     const CDN = window['@youwol/cdn-client']
-    let project = undefined
     const {lib} = await CDN.install({
         modules:[
             '@youwol/pyodide-cdn-package-template'
         ],
         modulesSideEffects:{
             '@youwol/pyodide-cdn-package-template#*': async ({module, onEvent}) => {
-                project = await module.install(onEvent)
+                await module.install(onEvent)
             }
         },
         aliases:{
@@ -23,7 +23,6 @@ return async ({debug}) => {
     })
     return await lib.projectState.run()
 }
-
  */
 export let projectState: IdeProject.ProjectState<IdeState> = undefined
 
