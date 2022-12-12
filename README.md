@@ -1,6 +1,6 @@
 # @youwol/pyodide-cdn-package-template
 
-
+Template to publish pyodide project as a module in the YouWol's CDN.
 
 This library is part of the hybrid cloud/local ecosystem
 [YouWol](https://platform.youwol.com/applications/@youwol/platform/latest).

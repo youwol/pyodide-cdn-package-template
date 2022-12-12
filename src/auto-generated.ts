@@ -67,7 +67,7 @@ export const setup = {
     name:'@youwol/pyodide-cdn-package-template',
         assetId:'QHlvdXdvbC9weW9kaWRlLWNkbi1wYWNrYWdlLXRlbXBsYXRl',
     version:'0.1.0',
-    shortDescription:"",
+    shortDescription:"Template to publish pyodide project as a module in the YouWol's CDN.",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/pyodide-cdn-package-template',
     npmPackage:'https://www.npmjs.com/package/@youwol/pyodide-cdn-package-template',
     sourceGithub:'https://github.com/youwol/pyodide-cdn-package-template',
