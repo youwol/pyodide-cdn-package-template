@@ -10,8 +10,8 @@ folder_path = Path(__file__).parent
 pkg_json = parse_json(folder_path / 'package.json')
 
 dependencies = {
-    "@youwol/cdn-client": "^1.0.9",
-    "@youwol/pyodide-helpers": "^0.1.0",
+    "@youwol/cdn-client": "^1.0.10",
+    "@youwol/pyodide-helpers": "^0.1.1",
     "rxjs": "^6.5.5",
 }
 template = Template(

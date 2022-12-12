@@ -1,8 +1,8 @@
 
 const runTimeDependencies = {
     "externals": {
-        "@youwol/cdn-client": "^1.0.9",
-        "@youwol/pyodide-helpers": "^0.1.0",
+        "@youwol/cdn-client": "^1.0.10",
+        "@youwol/pyodide-helpers": "^0.1.1",
         "rxjs": "^6.5.5"
     },
     "includedInBundle": {}
