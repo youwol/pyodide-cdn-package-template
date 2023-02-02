@@ -5,16 +5,8 @@
     "requirements": {
       "pythonPackages": [],
       "javascriptPackages": {
-        "modules": [
-          "d3#^5.15.0",
-          "@youwol/flux-view#^1.0.3",
-          "chart.js#^3.9.1"
-        ],
-        "aliases": {
-          "flux_view": "@youwol/flux-view",
-          "rxjs": "rxjs",
-          "chartJs": "chart.js"
-        }
+        "modules": [],
+        "aliases": {}
       }
     },
     "lockFile": {
@@ -22,52 +14,22 @@
         "graphType": "sequential-v2",
         "lock": [
           {
-            "name": "d3",
-            "version": "5.15.0",
-            "id": "ZDM=",
-            "namespace": "",
-            "type": "library",
-            "fingerprint": "d57564635df279fbb44ffc215a0b1b1b",
-            "exportedSymbol": "d3",
-            "apiKey": "5"
-          },
-          {
-            "name": "@youwol/flux-view",
-            "version": "1.0.3",
-            "id": "QHlvdXdvbC9mbHV4LXZpZXc=",
-            "namespace": "youwol",
-            "type": "library",
-            "fingerprint": "5eb04466e1cb59c082b7c99c1c9abd29",
-            "exportedSymbol": "@youwol/flux-view",
-            "apiKey": "1"
-          },
-          {
-            "name": "chart.js",
-            "version": "3.9.1",
-            "id": "Y2hhcnQuanM=",
-            "namespace": "",
-            "type": "library",
-            "fingerprint": "3e53474cdd2270eba638f1740a2bda43",
-            "exportedSymbol": "chart.js",
-            "apiKey": "3"
-          },
-          {
             "name": "rxjs",
             "version": "6.5.5",
             "id": "cnhqcw==",
             "namespace": "",
             "type": "core_library",
-            "fingerprint": "06a8235f42f4648db5eb1b389c12fba7",
+            "fingerprint": "1e16efc6b526a56525e489796ba24c0d",
             "exportedSymbol": "rxjs",
             "apiKey": "6"
           },
           {
             "name": "@youwol/cdn-pyodide-loader",
-            "version": "0.1.2",
+            "version": "0.1.3-wip",
             "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
             "namespace": "youwol",
             "type": "library",
-            "fingerprint": "0641a75383bebe848e2ccd4ad864f26d",
+            "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
             "exportedSymbol": "@youwol/cdn-pyodide-loader",
             "apiKey": "01"
           },
@@ -77,21 +39,13 @@
             "id": "cHlvZGlkZQ==",
             "namespace": "",
             "type": "library",
-            "fingerprint": "0a0197a0df00f9b794f7e20e10acb1bc",
+            "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
             "exportedSymbol": "pyodide",
             "apiKey": "021"
           }
         ],
         "definition": [
           [
-            [
-              "ZDM=",
-              "ZDM=/5.15.0/dist/d3.js"
-            ],
-            [
-              "Y2hhcnQuanM=",
-              "Y2hhcnQuanM=/3.9.1/dist/chart.js.js"
-            ],
             [
               "cnhqcw==",
               "cnhqcw==/6.5.5/dist/rxjs.js"
@@ -103,33 +57,19 @@
           ],
           [
             [
-              "QHlvdXdvbC9mbHV4LXZpZXc=",
-              "QHlvdXdvbC9mbHV4LXZpZXc=/1.0.3/dist/@youwol/flux-view.js"
-            ],
-            [
               "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-              "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.2/dist/@youwol/cdn-pyodide-loader.js"
+              "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
             ]
           ]
         ]
       },
-      "aliases": {
-        "flux_view": "@youwol/flux-view",
-        "rxjs": "rxjs",
-        "chartJs": "chart.js"
-      },
+      "aliases": {},
       "customInstallers": [
         {
           "module": "@youwol/cdn-pyodide-loader#^0.1.2",
           "installInputs": {
-            "loadingGraph": {
-              "graphType": "sequential-v2",
-              "lock": [],
-              "definition": [
-                []
-              ]
-            },
-            "warmUp": true,
+            "modules": [],
+            "warmUp": false,
             "exportedPyodideInstanceName": "loadedPyodide"
           }
         }
@@ -140,30 +80,13 @@
         "name": "default",
         "scriptPath": "./main.py",
         "parameters": ""
-      },
-      {
-        "name": "test",
-        "scriptPath": "./new_file.py",
-        "parameters": ""
       }
     ]
   },
   "sources": [
     {
       "path": "./main.py",
-      "content": "\nfrom python_playground.main_thread import application\nfrom python_playground.main_thread.worker import Listener\nfrom yw_pyodide import create_view\nfrom helpers_js import graph_view\n\nimport asyncio\nfrom rxjs import BehaviorSubject, combineLatest, operators\n\nworker_pool = application.get_worker_pool('Workers-pool 0')\nprint(\"Reserve workers\")\n#await worker_pool.reserve(3)\nprint(\"Reservation done\")\n\ndata_stream0 = BehaviorSubject.new()\ndata_stream1 = BehaviorSubject.new()\n\ncreate_view(\"Plot\", graph_view(data_stream0, data_stream1))\n\ndef get_task(iteration_counts):\n    return {\n    \"title\": \"approximate pi value\", \n    \"entryPoint\": {\n        \"file\": \"entry\",\n        \"function\": \"compute\"\n    },\n    \"argument\": {\n        \"iteration_counts\": iteration_counts\n    } \n}\n\n\nresult = await asyncio.gather(\n    worker_pool.schedule(get_task([1e2, 1e4, 1e6, 1e7]), Listener(lambda d: data_stream0.next(d))),\n    worker_pool.schedule(get_task([1e3, 1e5, 1e7]), Listener(lambda d: data_stream1.next(d)))\n)\n\n\nprint(f\"Got  final result, thread 1: {result[0][result[0].length-1].y}, thread 2: {result[1][result[1].length-1].y}\")\nresult[0][result[0].length-1].y\n"
-    },
-    {
-      "path": "./plot.py",
-      "content": "\nfrom pyodide.ffi import to_js as to_js_0\nfrom typing import Iterable, Tuple\nfrom js import Object\nimport chartJs\n\n\nchartJs.Chart.register(*chartJs.registerables);\n\ndef create_chart(html_element, samples: Iterable[Tuple[float, float]]) -> chartJs.Chart:\n    \n    data = {    \n        \"datasets\": [{\n            \"label\": 'Dataset',\n            \"backgroundColor\": 'rgb(255, 99, 132)',\n            \"borderColor\": 'rgb(255, 99, 132)',\n            \"data\": samples,\n        }]\n    }\n\n    config = {\n        \"type\": 'scatter',\n        \"data\": data\n    }\n    \n    return chartJs.Chart.new(\n        html_element,\n        to_js(config)\n    )   \n    \ndef to_js(obj):\n    return to_js_0(obj, dict_converter= Object.fromEntries)\n            "
-    },
-    {
-      "path": "./helpers_js.js",
-      "content": "\n\nfunction create_view(stream0, stream1, {rxjs, flux_view, chartJs}){ \n\n\treturn { \n        class: \"w-100 h-100 p-5 mx-auto\",        \n        children:[{\n            tag:'canvas',\n            connectedCallback: (html_element) => {\n                const chart = new chartJs.Chart(\n                    html_element, \n                    {\n                        type: 'scatter',\n                        data: { \n                            datasets: [\n                        \t] \n                        }\n                    }\n                )    \n                const sub = rxjs.combineLatest([stream0, stream1])\n                .pipe(\n                    rxjs.operators.map( ([s0, s1]) => [...(s0? s0 : []), ...(s1 ? s1 : [])])\n                 )\n                .subscribe((data) => {\n                    chart.data.datasets = [\n                        {\n                            label: \"Pi approx\",\n                            backgroundColor: 'rgb(255, 99, 132)',\n                            borderColor: 'rgb(255, 99, 132)',\n                            data\n                        }\n                    ]\n                    chart.update()\n                })\n                html_element.ownSubscriptions(sub)\n            }         \n        }]\n\t}\n}\n\n\nreturn async ({rxjs, flux_view, chartJs}) => {\n    chartJs.Chart.register(...chartJs.registerables)\n    return {\n        graph_view: (stream0, stream1) => create_view(stream0, stream1,  {rxjs, flux_view, chartJs})\n    }\n}"
-    },
-    {
-      "path": "./new_file.py",
-      "content": "from python_playground.main_thread import application\nfrom python_playground.main_thread.worker import Listener\n\n# make sure a 'Workers-pool 0' exists in your project, required 'numpy' dependency.\nworker_pool = application.get_worker_pool('Workers-pool 1')\nprint(\"Reserve workers\")\n# This is how you can scale dynamically the workers-pool\nawait worker_pool.reserve(1)\nprint(\"Reservation done\")\n\ntask = {\n    \"title\": \"approximate pi value\", \n    \"entryPoint\": {\n        \"file\": \"entry\",\n        \"function\": \"compute\"\n    },\n    \"argument\": {\n        \"samplings\": [1e2, 1e4, 1e6, 1e7]\n    } \n}\n\nresult = await worker_pool.schedule(\n    task, \n    Listener(lambda d: print(\"Got intermediate result\",d))\n)\n\nprint(f\"Got  final result\", result)"
+      "content": "\nfrom python_playground.main_thread import application\n\nimport asyncio\n\nworker_pool = application.get_worker_pool('Workers-pool 0')\n\ndef get_task(count):\n    return {\n    \"title\": \"approximate pi value\", \n    \"entryPoint\": {\n        \"file\": \"entry\",\n        \"function\": \"compute\"\n    },\n    \"argument\": {\n        \"count\": count\n    } \n}\nprint(\"Start computation\")\n\nresults = await asyncio.gather(\n    worker_pool.schedule(get_task(1e7)),\n    worker_pool.schedule(get_task(1e7))\n)\n\nvalue_thread1 = results[0]\nvalue_thread2 = results[1]\n\nprint(f\"Got  final result, thread 1: {value_thread1}, thread 2: {value_thread2}\")\n0.5 * (value_thread1 + value_thread2)"
     }
   ],
   "workersPools": [
@@ -190,17 +113,17 @@
                 "id": "cnhqcw==",
                 "namespace": "",
                 "type": "core_library",
-                "fingerprint": "06a8235f42f4648db5eb1b389c12fba7",
+                "fingerprint": "6f0468e985568932123db9cc30ee2903",
                 "exportedSymbol": "rxjs",
                 "apiKey": "6"
               },
               {
                 "name": "@youwol/cdn-pyodide-loader",
-                "version": "0.1.2",
+                "version": "0.1.3-wip",
                 "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
                 "namespace": "youwol",
                 "type": "library",
-                "fingerprint": "0641a75383bebe848e2ccd4ad864f26d",
+                "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
                 "exportedSymbol": "@youwol/cdn-pyodide-loader",
                 "apiKey": "01"
               },
@@ -210,7 +133,7 @@
                 "id": "cHlvZGlkZQ==",
                 "namespace": "",
                 "type": "library",
-                "fingerprint": "0a0197a0df00f9b794f7e20e10acb1bc",
+                "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
                 "exportedSymbol": "pyodide",
                 "apiKey": "021"
               }
@@ -229,7 +152,7 @@
               [
                 [
                   "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-                  "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.2/dist/@youwol/cdn-pyodide-loader.js"
+                  "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
                 ]
               ]
             ]
@@ -239,30 +162,10 @@
             {
               "module": "@youwol/cdn-pyodide-loader#^0.1.2",
               "installInputs": {
-                "loadingGraph": {
-                  "graphType": "sequential-v2",
-                  "lock": [
-                    {
-                      "name": "@pyodide/numpy",
-                      "version": "1.23.0",
-                      "id": "QHB5b2RpZGUvbnVtcHk=",
-                      "namespace": "pyodide",
-                      "type": "library",
-                      "fingerprint": "32736dd3e6165cb5c047014ce1d38487",
-                      "exportedSymbol": "@pyodide/numpy",
-                      "apiKey": "1"
-                    }
-                  ],
-                  "definition": [
-                    [
-                      [
-                        "QHB5b2RpZGUvbnVtcHk=",
-                        "QHB5b2RpZGUvbnVtcHk=/1.23.0/dist/numpy-1.22.4-cp310-cp310-emscripten_3_1_14_wasm32.whl"
-                      ]
-                    ]
-                  ]
-                },
-                "warmUp": true,
+                "modules": [
+                  "numpy"
+                ],
+                "warmUp": false,
                 "exportedPyodideInstanceName": "loadedPyodide"
               }
             }
@@ -278,10 +181,10 @@
       "sources": [
         {
           "path": "./entry.py",
-          "content": "import numpy as np\nimport math\nfrom python_playground.worker_thread import Emitter\n\ndef calc_pi(n):\n    r = 0\n    for i in range(3):\n        data = np.random.uniform(-0.5, 0.5, size=(n, 2))\n        inside = len(\n            np.argwhere(\n                np.linalg.norm(data, axis=1) < 0.5\n            )\n        )\n        r = r + (inside / n * 4)\n    return r / 3\n\ndef compute(args):\n    counts = args[\"iteration_counts\"]\n    r = None\n    points = []\n    for n in counts:\n        print(f\"Start to compute PI using {n} iterations\")\n        r = calc_pi(n)\n        points.append({\"x\":math.log10(n), \"y\":r})\n        Emitter.send(points)\n        \n    return points\n"
+          "content": "import numpy as np\nimport math\n\n\ndef calc_pi(n):\n    r = 0\n    for i in range(3):\n        data = np.random.uniform(-0.5, 0.5, size=(n, 2))\n        inside = len(\n            np.argwhere(\n                np.linalg.norm(data, axis=1) < 0.5\n            )\n        )\n        r = r + (inside / n * 4)\n    return r / 3\n\ndef compute(args):\n    return calc_pi(args[\"count\"])    \n"
         }
       ],
-      "capacity": 5
+      "capacity": 2
     }
   ]
 }
