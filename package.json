@@ -1,7 +1,7 @@
 {
     "name": "@youwol/pyodide-cdn-package-template",
     "description": "Template to publish pyodide project as a module in the YouWol's CDN.",
-    "version": "0.1.0",
+    "version": "0.1.1-wip",
     "author": "greinisch@youwol.com",
     "homepage": "https://github.com/youwol/pyodide-cdn-package-template#README.md",
     "main": "dist/@youwol/pyodide-cdn-package-template.js",
