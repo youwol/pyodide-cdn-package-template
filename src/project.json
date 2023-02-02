@@ -1,190 +1,177 @@
 {
-  "id": "95a5e498-da42-451a-840c-dfa76e08a41d",
-  "name": "Project",
-  "environment": {
-    "requirements": {
-      "pythonPackages": [],
-      "javascriptPackages": {
-        "modules": [],
-        "aliases": {}
-      }
-    },
-    "lockFile": {
-      "loadingGraph": {
-        "graphType": "sequential-v2",
-        "lock": [
-          {
-            "name": "rxjs",
-            "version": "6.5.5",
-            "id": "cnhqcw==",
-            "namespace": "",
-            "type": "core_library",
-            "fingerprint": "1e16efc6b526a56525e489796ba24c0d",
-            "exportedSymbol": "rxjs",
-            "apiKey": "6"
-          },
-          {
-            "name": "@youwol/cdn-pyodide-loader",
-            "version": "0.1.3-wip",
-            "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-            "namespace": "youwol",
-            "type": "library",
-            "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
-            "exportedSymbol": "@youwol/cdn-pyodide-loader",
-            "apiKey": "01"
-          },
-          {
-            "name": "pyodide",
-            "version": "0.21.3",
-            "id": "cHlvZGlkZQ==",
-            "namespace": "",
-            "type": "library",
-            "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
-            "exportedSymbol": "pyodide",
-            "apiKey": "021"
-          }
-        ],
-        "definition": [
-          [
-            [
-              "cnhqcw==",
-              "cnhqcw==/6.5.5/dist/rxjs.js"
-            ],
-            [
-              "cHlvZGlkZQ==",
-              "cHlvZGlkZQ==/0.21.3/full/pyodide.js"
-            ]
-          ],
-          [
-            [
-              "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-              "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
-            ]
-          ]
-        ]
-      },
-      "aliases": {},
-      "customInstallers": [
-        {
-          "module": "@youwol/cdn-pyodide-loader#^0.1.2",
-          "installInputs": {
-            "modules": [],
-            "warmUp": false,
-            "exportedPyodideInstanceName": "loadedPyodide"
-          }
-        }
-      ]
-    },
-    "configurations": [
-      {
-        "name": "default",
-        "scriptPath": "./main.py",
-        "parameters": ""
-      }
-    ]
-  },
-  "sources": [
-    {
-      "path": "./main.py",
-      "content": "\nfrom python_playground.main_thread import application\n\nimport asyncio\n\nworker_pool = application.get_worker_pool('Workers-pool 0')\n\ndef get_task(count):\n    return {\n    \"title\": \"approximate pi value\", \n    \"entryPoint\": {\n        \"file\": \"entry\",\n        \"function\": \"compute\"\n    },\n    \"argument\": {\n        \"count\": count\n    } \n}\nprint(\"Start computation\")\n\nresults = await asyncio.gather(\n    worker_pool.schedule(get_task(1e7)),\n    worker_pool.schedule(get_task(1e7))\n)\n\nvalue_thread1 = results[0]\nvalue_thread2 = results[1]\n\nprint(f\"Got  final result, thread 1: {value_thread1}, thread 2: {value_thread2}\")\n0.5 * (value_thread1 + value_thread2)"
-    }
-  ],
-  "workersPools": [
-    {
-      "id": "16eb7144-fa9b-4fc3-84f9-389da2ebb221",
-      "name": "Workers-pool 0",
-      "environment": {
+    "id": "95a5e498-da42-451a-840c-dfa76e08a41d",
+    "name": "Project",
+    "environment": {
         "requirements": {
-          "pythonPackages": [
-            "numpy"
-          ],
-          "javascriptPackages": {
-            "modules": [],
-            "aliases": {}
-          }
+            "pythonPackages": [],
+            "javascriptPackages": {
+                "modules": [],
+                "aliases": {}
+            }
         },
         "lockFile": {
-          "loadingGraph": {
-            "graphType": "sequential-v2",
-            "lock": [
-              {
-                "name": "rxjs",
-                "version": "6.5.5",
-                "id": "cnhqcw==",
-                "namespace": "",
-                "type": "core_library",
-                "fingerprint": "6f0468e985568932123db9cc30ee2903",
-                "exportedSymbol": "rxjs",
-                "apiKey": "6"
-              },
-              {
-                "name": "@youwol/cdn-pyodide-loader",
-                "version": "0.1.3-wip",
-                "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-                "namespace": "youwol",
-                "type": "library",
-                "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
-                "exportedSymbol": "@youwol/cdn-pyodide-loader",
-                "apiKey": "01"
-              },
-              {
-                "name": "pyodide",
-                "version": "0.21.3",
-                "id": "cHlvZGlkZQ==",
-                "namespace": "",
-                "type": "library",
-                "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
-                "exportedSymbol": "pyodide",
-                "apiKey": "021"
-              }
-            ],
-            "definition": [
-              [
-                [
-                  "cnhqcw==",
-                  "cnhqcw==/6.5.5/dist/rxjs.js"
+            "loadingGraph": {
+                "graphType": "sequential-v2",
+                "lock": [
+                    {
+                        "name": "rxjs",
+                        "version": "6.5.5",
+                        "id": "cnhqcw==",
+                        "namespace": "",
+                        "type": "core_library",
+                        "fingerprint": "1e16efc6b526a56525e489796ba24c0d",
+                        "exportedSymbol": "rxjs",
+                        "apiKey": "6"
+                    },
+                    {
+                        "name": "@youwol/cdn-pyodide-loader",
+                        "version": "0.1.3-wip",
+                        "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
+                        "namespace": "youwol",
+                        "type": "library",
+                        "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
+                        "exportedSymbol": "@youwol/cdn-pyodide-loader",
+                        "apiKey": "01"
+                    },
+                    {
+                        "name": "pyodide",
+                        "version": "0.21.3",
+                        "id": "cHlvZGlkZQ==",
+                        "namespace": "",
+                        "type": "library",
+                        "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
+                        "exportedSymbol": "pyodide",
+                        "apiKey": "021"
+                    }
                 ],
-                [
-                  "cHlvZGlkZQ==",
-                  "cHlvZGlkZQ==/0.21.3/full/pyodide.js"
+                "definition": [
+                    [
+                        ["cnhqcw==", "cnhqcw==/6.5.5/dist/rxjs.js"],
+                        ["cHlvZGlkZQ==", "cHlvZGlkZQ==/0.21.3/full/pyodide.js"]
+                    ],
+                    [
+                        [
+                            "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
+                            "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
+                        ]
+                    ]
                 ]
-              ],
-              [
-                [
-                  "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
-                  "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
-                ]
-              ]
+            },
+            "aliases": {},
+            "customInstallers": [
+                {
+                    "module": "@youwol/cdn-pyodide-loader#^0.1.2",
+                    "installInputs": {
+                        "modules": [],
+                        "warmUp": false,
+                        "exportedPyodideInstanceName": "loadedPyodide"
+                    }
+                }
             ]
-          },
-          "aliases": {},
-          "customInstallers": [
-            {
-              "module": "@youwol/cdn-pyodide-loader#^0.1.2",
-              "installInputs": {
-                "modules": [
-                  "numpy"
-                ],
-                "warmUp": false,
-                "exportedPyodideInstanceName": "loadedPyodide"
-              }
-            }
-          ]
         },
         "configurations": [
-          {
-            "name": "default",
-            "scriptPath": "./entry.py"
-          }
+            {
+                "name": "default",
+                "scriptPath": "./main.py",
+                "parameters": ""
+            }
         ]
-      },
-      "sources": [
+    },
+    "sources": [
         {
-          "path": "./entry.py",
-          "content": "import numpy as np\nimport math\n\n\ndef calc_pi(n):\n    r = 0\n    for i in range(3):\n        data = np.random.uniform(-0.5, 0.5, size=(n, 2))\n        inside = len(\n            np.argwhere(\n                np.linalg.norm(data, axis=1) < 0.5\n            )\n        )\n        r = r + (inside / n * 4)\n    return r / 3\n\ndef compute(args):\n    return calc_pi(args[\"count\"])    \n"
+            "path": "./main.py",
+            "content": "\nfrom python_playground.main_thread import application\n\nimport asyncio\n\nworker_pool = application.get_worker_pool('Workers-pool 0')\n\ndef get_task(count):\n    return {\n    \"title\": \"approximate pi value\", \n    \"entryPoint\": {\n        \"file\": \"entry\",\n        \"function\": \"compute\"\n    },\n    \"argument\": {\n        \"count\": count\n    } \n}\nprint(\"Start computation\")\n\nresults = await asyncio.gather(\n    worker_pool.schedule(get_task(1e7)),\n    worker_pool.schedule(get_task(1e7))\n)\n\nvalue_thread1 = results[0]\nvalue_thread2 = results[1]\n\nprint(f\"Got  final result, thread 1: {value_thread1}, thread 2: {value_thread2}\")\n0.5 * (value_thread1 + value_thread2)"
         }
-      ],
-      "capacity": 2
-    }
-  ]
+    ],
+    "workersPools": [
+        {
+            "id": "16eb7144-fa9b-4fc3-84f9-389da2ebb221",
+            "name": "Workers-pool 0",
+            "environment": {
+                "requirements": {
+                    "pythonPackages": ["numpy"],
+                    "javascriptPackages": {
+                        "modules": [],
+                        "aliases": {}
+                    }
+                },
+                "lockFile": {
+                    "loadingGraph": {
+                        "graphType": "sequential-v2",
+                        "lock": [
+                            {
+                                "name": "rxjs",
+                                "version": "6.5.5",
+                                "id": "cnhqcw==",
+                                "namespace": "",
+                                "type": "core_library",
+                                "fingerprint": "6f0468e985568932123db9cc30ee2903",
+                                "exportedSymbol": "rxjs",
+                                "apiKey": "6"
+                            },
+                            {
+                                "name": "@youwol/cdn-pyodide-loader",
+                                "version": "0.1.3-wip",
+                                "id": "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
+                                "namespace": "youwol",
+                                "type": "library",
+                                "fingerprint": "fc6966cb851ea03f2d08ff7a7ac7e22f",
+                                "exportedSymbol": "@youwol/cdn-pyodide-loader",
+                                "apiKey": "01"
+                            },
+                            {
+                                "name": "pyodide",
+                                "version": "0.21.3",
+                                "id": "cHlvZGlkZQ==",
+                                "namespace": "",
+                                "type": "library",
+                                "fingerprint": "791e04df6a2fb914b949bb8eb03d511e",
+                                "exportedSymbol": "pyodide",
+                                "apiKey": "021"
+                            }
+                        ],
+                        "definition": [
+                            [
+                                ["cnhqcw==", "cnhqcw==/6.5.5/dist/rxjs.js"],
+                                [
+                                    "cHlvZGlkZQ==",
+                                    "cHlvZGlkZQ==/0.21.3/full/pyodide.js"
+                                ]
+                            ],
+                            [
+                                [
+                                    "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=",
+                                    "QHlvdXdvbC9jZG4tcHlvZGlkZS1sb2FkZXI=/0.1.3-wip/dist/@youwol/cdn-pyodide-loader.js"
+                                ]
+                            ]
+                        ]
+                    },
+                    "aliases": {},
+                    "customInstallers": [
+                        {
+                            "module": "@youwol/cdn-pyodide-loader#^0.1.2",
+                            "installInputs": {
+                                "modules": ["numpy"],
+                                "warmUp": false,
+                                "exportedPyodideInstanceName": "loadedPyodide"
+                            }
+                        }
+                    ]
+                },
+                "configurations": [
+                    {
+                        "name": "default",
+                        "scriptPath": "./entry.py"
+                    }
+                ]
+            },
+            "sources": [
+                {
+                    "path": "./entry.py",
+                    "content": "import numpy as np\nimport math\n\n\ndef calc_pi(n):\n    r = 0\n    for i in range(3):\n        data = np.random.uniform(-0.5, 0.5, size=(n, 2))\n        inside = len(\n            np.argwhere(\n                np.linalg.norm(data, axis=1) < 0.5\n            )\n        )\n        r = r + (inside / n * 4)\n    return r / 3\n\ndef compute(args):\n    return calc_pi(args[\"count\"])    \n"
+                }
+            ],
+            "capacity": 2
+        }
+    ]
 }
