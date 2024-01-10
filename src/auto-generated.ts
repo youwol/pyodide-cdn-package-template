@@ -65,9 +65,9 @@ const entries = {
 export const setup = {
     name:'@youwol/pyodide-cdn-package-template',
         assetId:'QHlvdXdvbC9weW9kaWRlLWNkbi1wYWNrYWdlLXRlbXBsYXRl',
-    version:'0.1.1',
+    version:'0.1.2-wip',
     shortDescription:"Template to publish pyodide project as a module in the YouWol's CDN.",
-    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/pyodide-cdn-package-template',
+    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/pyodide-cdn-package-template&tab=doc',
     npmPackage:'https://www.npmjs.com/package/@youwol/pyodide-cdn-package-template',
     sourceGithub:'https://github.com/youwol/pyodide-cdn-package-template',
     userGuide:'https://l.youwol.com/doc/@youwol/pyodide-cdn-package-template',
@@ -82,7 +82,7 @@ export const setup = {
     },
 
     installMainModule: ({cdnClient, installParameters}:{
-        cdnClient:{install:(unknown) => Promise<Window>},
+        cdnClient:{install:(unknown) => Promise<WindowOrWorkerGlobalScope>},
         installParameters?
     }) => {
         const parameters = installParameters || {}
@@ -101,7 +101,7 @@ export const setup = {
     },
     installAuxiliaryModule: ({name, cdnClient, installParameters}:{
         name: string,
-        cdnClient:{install:(unknown) => Promise<Window>},
+        cdnClient:{install:(unknown) => Promise<WindowOrWorkerGlobalScope>},
         installParameters?
     }) => {
         const entry = secondaryEntries[name]
@@ -111,7 +111,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/pyodide-cdn-package-template#0.1.1~dist/@youwol/pyodide-cdn-package-template/${entry.name}.js`
+            `@youwol/pyodide-cdn-package-template#0.1.2-wip~dist/@youwol/pyodide-cdn-package-template/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
