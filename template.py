@@ -24,7 +24,8 @@ template = Template(
     dependencies=Dependencies(
         runTime=RunTimeDeps(
             externals=dependencies
-        )
+        ),
+        devTime={'jest-jasmine2':'29.7.0'}
     ),
     bundles=Bundles(
           mainModule=MainModule(
