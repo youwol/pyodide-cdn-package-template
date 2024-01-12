@@ -24,9 +24,7 @@ template = Template(
     dependencies=Dependencies(
         runTime=RunTimeDeps(
             externals=dependencies
-        ),
-        devTime={'jest-jasmine2':'29.7.0'}
-    ),
+        )    ),
     bundles=Bundles(
           mainModule=MainModule(
               entryFile='./index.ts',
@@ -42,7 +40,7 @@ shutil.copyfile(
     dst=folder_path / 'src' / 'auto-generated.ts'
 )
 for file in ['README.md', '.gitignore', '.npmignore', '.prettierignore', 'LICENSE', 'package.json',
-             'tsconfig.json', 'webpack.config.ts']:
+             'jest.config.ts', 'tsconfig.json', 'webpack.config.ts']:
     shutil.copyfile(
         src=folder_path / '.template' / file,
         dst=folder_path / file
